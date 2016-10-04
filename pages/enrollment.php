@@ -3,6 +3,6 @@
 	include "../modules/database.php";
     include "../modules/sanitize.php";
 	include "studentHeader.php";
-    include "contractStudentINFOBody.php";
+    include "enrollmentBody.php";
 	include "footer.php";
 ?>

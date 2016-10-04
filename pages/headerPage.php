@@ -12,11 +12,14 @@
 <header>
   <div id="top">
   
-     <h1 id="websiteTitle">Music School</h1>
+     <h1 id="websiteTitle">Welcome to Music School</h1>
    </div><!--top-->
       <div class="navigation">
           <div><a href="../index.php">Home</a></div>
           <div><a href="about.php">About</a></div>
-          <div><a href="contact.php">Contact</a></div>
+          <div><a href="instruments.php">Instruments</a></div>
+		  <div><a href="contract.php">Contract</a></div>
+          <div><a href="contact123.php">Contact</a></div>
       </div> 
+	  
 </header>

@@ -44,7 +44,7 @@
             <li><a href="modules/register.php">My teachers</a></li> 
           </ul>
         </li>
-		
+-->			
 		
 		  <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Teacher
@@ -57,7 +57,7 @@
 			<li><a href="modules/register.php">My Contract</a></li> 
           </ul>
         </li>
--->		
+	
 		
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
