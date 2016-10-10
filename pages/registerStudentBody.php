@@ -1,7 +1,10 @@
+<?php
+include "../pages/headerIndex.php";
+?>
+<link rel="stylesheet" href="../css/style.css">
+
 <div class="registerPage">
 <form action="#" method="post">
-
-
 
 
 <form name="htmlform" method="post" action="html_form_send.php">
@@ -144,32 +147,27 @@
 	
 	$password_hash = password_hash($password, PASSWORD_DEFAULT);
 	try{
-		//insert into logins table
-		$stmt2 = $conn->prepare("INSERT INTO logins(role, permission, userName, password)
-		                        VALUES(:role, :permission, :userName, :password)");
+		//insert into users table
+		$stmt2 = $conn->prepare("INSERT INTO users(role, userName, password, permission, firstName, lastName, dateOfBirth, address, gender, phoneNumber, mobileNumber, email, faceBook)
+		                        VALUES(:role, :userName, :password, :permission, :firstName, :lastName, :dateOfBirth, :address, :gender, :phoneNumber, :mobileNumber, :email, :faceBook)");
 	    $student = 'student';
 		$permission = 'off';
 		$stmt2->bindParam(':role', $student);
-		$stmt2->bindParam(':permission', $permission);
 	    $stmt2->bindParam(':userName', $userName);
 	    $stmt2->bindParam(':password', $password_hash);
+	    $stmt2->bindParam(':permission', $permission);
+		$stmt2->bindParam(':firstName', $firstName);
+	    $stmt2->bindParam(':lastName', $lastName);
+		$stmt2->bindParam(':dateOfBirth', $dateOfBirth);
+		$stmt2->bindParam(':address', $address);
+	    $stmt2->bindParam(':gender', $gender);
+	    $stmt2->bindParam(':phoneNumber', $phoneNumber);
+	    $stmt2->bindParam(':mobileNumber', $mobileNumber);
+	    $stmt2->bindParam(':email', $email);
+		$stmt2->bindParam(':faceBook', $faceBook);
+								
 		$stmt2->execute();
-		$newId=$conn->lastInsertId();
-		//insert into users table
-		$stmt3 = $conn->prepare("INSERT INTO students(firstName, lastName, dateOfBirth, address, gender, phoneNumber, mobileNumber, email, faceBook, loginID)
-		                        VALUES(:firstName, :lastName, :dateOfBirth, :address, :gender, :phoneNumber, :mobileNumber, :email, :faceBook, :loginID)");
-		$stmt3->bindParam(':firstName', $firstName);
-	    $stmt3->bindParam(':lastName', $lastName);
-		$stmt3->bindParam(':dateOfBirth', $dateOfBirth);
-		$stmt3->bindParam(':address', $address);
-	    $stmt3->bindParam(':gender', $gender);
-	    $stmt3->bindParam(':phoneNumber', $phoneNumber);
-	    $stmt3->bindParam(':mobileNumber', $mobileNumber);
-	    $stmt3->bindParam(':email', $email);
-		$stmt3->bindParam(':faceBook', $faceBook);
-		$stmt3->bindParam(':loginID', $newId);
-		$stmt3->execute();
-	  echo "New records created successfully";
+	  echo "Plase wait for Manager's permission";
 	}
 	catch(PDOException $e)
 	{

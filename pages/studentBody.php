@@ -198,7 +198,7 @@ $loginID_from_loginsTable = $row['loginID'];
 $sql2="SELECT firstName FROM students WHERE loginID ='$loginID_from_loginsTable'";
 $result2=$conn->query($sql2);
 $row2=$result2->fetch();
-echo "Your first Name is ".$row2['firstName'];
+echo "Your first Name is <strong>".$row2['firstName']; echo"</strong>"
 ?>
 <form action="studentPage.php" method="post">
   <label for="firstName">Insert the name you want to change:</label> <input type="text" size="20" maxlength="45" name="changed_firstName"
@@ -217,7 +217,7 @@ $loginID_from_loginsTable = $row['loginID'];
 $sql2="SELECT lastName FROM students WHERE loginID ='$loginID_from_loginsTable'";
 $result2=$conn->query($sql2);
 $row2=$result2->fetch();
-echo "Your last Name is ".$row2['lastName'];
+echo "Your last Name is <strong>".$row2['lastName']; echo"</strong>"
 ?>
 <form action="studentPage.php" method="post">
  <label for="lastname">Insert the name you want to change:</label> <input type="text" size="20" maxlength="45" name="changed_lastName" 
@@ -235,8 +235,8 @@ $loginID_from_loginsTable = $row['loginID'];
 $sql2="SELECT dateOfBirth FROM students WHERE loginID ='$loginID_from_loginsTable'";
 $result2=$conn->query($sql2);
 $row2=$result2->fetch();
-echo "Your birday is ".$row2['dateOfBirth'];
-echo '<br>';
+echo "Your birday is <strong>".$row2['dateOfBirth']; 
+echo '</strong> <br>';
 ?>
 <form action="studentPage.php" method="post">
  Insert the birth day you want to change: <input type="date" size="20" maxlength="45" name="changed_dateOfBirth" required
@@ -254,8 +254,8 @@ $loginID_from_loginsTable = $row['loginID'];
 $sql2="SELECT address FROM students WHERE loginID ='$loginID_from_loginsTable'";
 $result2=$conn->query($sql2);
 $row2=$result2->fetch();
-echo "Your address is ".$row2['address'];
-echo '<br>';
+echo "Your address is <strong>".$row2['address'];
+echo '</strong> <br>';
 ?>
 <form action="studentPage.php" method="post">
  Insert the address you want to change:<input type="text" size="20" maxlength="45" name="changed_address" required>
@@ -273,8 +273,8 @@ $loginID_from_loginsTable = $row['loginID'];
 $sql2="SELECT mobileNumber FROM students WHERE loginID ='$loginID_from_loginsTable'";
 $result2=$conn->query($sql2);
 $row2=$result2->fetch();
-echo "Your mobile-number is ".$row2['mobileNumber'];
-echo '<br>';
+echo "Your mobile-number is <strong>".$row2['mobileNumber'];
+echo '</strong> <br>';
 ?>
 <form action="studentPage.php" method="post">
  Insert the your mobile-number you want to change: <input type="text" size="12" maxlength="12"
@@ -295,8 +295,8 @@ $loginID_from_loginsTable = $row['loginID'];
 $sql2="SELECT phoneNumber FROM students WHERE loginID ='$loginID_from_loginsTable'";
 $result2=$conn->query($sql2);
 $row2=$result2->fetch();
-echo "Your parent's phoneNumber is ".$row2['phoneNumber'];
-echo '<br>';
+echo "Your parent's phoneNumber is <strong>".$row2['phoneNumber'];
+echo '</strong> <br>';
 ?>
 <form action="studentPage.php" method="post">
  Insert the your mobile-number you want to change:<input type="text" size="12" maxlength="12"
@@ -316,8 +316,8 @@ $loginID_from_loginsTable = $row['loginID'];
 $sql2="SELECT email FROM students WHERE loginID ='$loginID_from_loginsTable'";
 $result2=$conn->query($sql2);
 $row2=$result2->fetch();
-echo "Your e-mail is ".$row2['email'];
-echo '<br>';
+echo "Your e-mail is <strong>".$row2['email'];
+echo '</strong> <br>';
 ?>
 <form action="studentPage.php" method="post">
  Insert e-mail you want to change:<input type="email" size="20" maxlength="30" name="changed_email"
@@ -336,8 +336,8 @@ $loginID_from_loginsTable = $row['loginID'];
 $sql2="SELECT faceBook FROM students WHERE loginID ='$loginID_from_loginsTable'";
 $result2=$conn->query($sql2);
 $row2=$result2->fetch();
-echo "Your facebook account is ".$row2['faceBook'];
-echo '<br>';
+echo "Your facebook account is <strong>".$row2['faceBook'];
+echo '</strong> <br>';
 ?>
 <form action="studentPage.php" method="post">
  Insert facebook account you want to change:<input type="eamil" size="20" maxlength="30" name="changed_facebook"

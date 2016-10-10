@@ -58,37 +58,95 @@ else
 				 </form>
 		         </div><!--login-->"); 
            }
-		  ?>
-<div class="adminPage">
-<?php
-try{
-	//prepare query
-	$stmt = $conn->prepare("SELECT lessons.lessonType, lessons.instrument, lessons.lessionDuration, lessons.lessonPlace, contracts.startDate, contracts.endDate, 
-	    teachers.firstName from contracts, lessons, teachers, students, logins where contracts.lessonID = lessons.lessonID and lessons.teacherID = 
-		teachers.teacherID and contracts.studentID = students.studentID and students.loginID = logins.loginID and $_SESSION['userName'] = students.studentID ");
-		//execute
-		$stmt->execute();
-		// retrieve all rows
-		echo ("<table class=\"table\">");
-		echo ("<tr><th> Lesson Type</th><th>Instrument</th><th>Lesson Duration</th><th>Lesson Place</th><th>Start Date</th><th>End Date</th><th>Teacher Name</th></tr>");
+?>
 
-		while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-		{
-			$lessonType = $row["lessonType"];
-			$instrument = $row["instrument"];
-			$lessionDuration = $row["lessionDuration"];
-			$lessonPlace = $row["lessonPlace"];
-			$startDate = $row["startDate"];
-			$endDate = $row["endDate"];
-			$firstName = $row["firstName"];
-			echo("<tr><td>$lessonType</td><td>$instrument</td><td>$lessionDuration</td>");
-			echo("<td>$lessonPlace</td><td>$startDate</td><td>$endDate</td><td>$firstName</td></tr>");
-			echo ("</table>");
-		}	
+
+
+
+
+
+
+<div class="adminPage">
+
+<?php
+if(@$_POST['instruments']){
+  $selectLesson = $_POST['instruments'];
+  //session_start();
+  $_SESSION['instruementID']= $selectLesson;
 }
-catch(PDOExceptio $e)
-{
-echo "Error: " . $e->getMessage();
+ ?>
+
+<?php
+
+$sql="SELECT 	instruementID,instruementName FROM instruement";
+$result=$conn->query($sql);
+?>
+
+<form action=<?php echo $_SERVER['SCRIPT_NAME']; ?> method="post">
+  Choose a instrument that you want to hire :
+    <select name="instruments";>
+  <?php
+  $i=1;
+   while($row = $result->fetch(PDO::FETCH_ASSOC)) { ?>
+      <option <?php
+      if(@$_POST['$instruments']== 2){?>
+        selected<?php
+        $i=$i+1;?>
+      <?php
+      } ?>
+      value=<?php echo $row['instruementID'];?>><?php echo $row['instruementName'];?></option>
+    <?php
+    }
+    ?>
+  </select>
+      <input type='submit' value="Click">
+</form><br><br>
+
+
+<?php
+@$instruementID=$_SESSION['instruementID'];
+$sql2="SELECT lessonID,lessonType FROM lessons WHERE instruementID='$instruementID'";
+$result2=$conn->query($sql2);
+?>
+
+
+<?php
+@$selectClass=$_SESSION['selectClass'];
+$sql3="SELECT * FROM lessons WHERE lessonID='$selectClass'";
+$result3=$conn->query($sql3);
+$row3=$result3->fetch();
+?>
+<br><br>
+
+
+<?php
+$userName=$_SESSION['userName'];
+$sql6 = "SELECT students.studentID FROM students,logins WHERE students.loginID=logins.loginID AND logins.userName='$userName'";
+$result6=$conn->query($sql6);
+$row6=$result6->fetch();
+$row6['studentID'];
+//$result6->rowCount();
+ ?>
+
+<?php
+if(@$_POST['classChoice']){ ?>
+<?php
+$startDate=$row3['startDate'];
+$endDate=$row3['endDate'];
+$lessonID=$row3['lessonID'];
+$studentID=$row6['studentID'];//$_SESSION['userName'];
+$sql5 = "INSERT INTO contracts(studentID,startDate,endDate,lessonID) VALUES ('$studentID','$startDate','$endDate','$lessonID')";
+$result5=$conn->query($sql5);
 }
 ?>
+
+
+
+
+
 </div><!--adminPage-->
+
+		  
+		  
+		  
+		  

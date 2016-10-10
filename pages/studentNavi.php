@@ -28,11 +28,12 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="http://localhost:133/music_school/">HOME</a></li>
-		<li><a href="#newsfeed">News</a></li>
+		<!-- 	<li><a href="http://localhost:133/music_school/">HOME</a></li> 
+			<li><a href="#newsfeed">News</a></li>
         <li><a href="http://localhost:133/music_school/modules/lesson.php">Lesson</a></li>
+		-->
 		
-<!--		
+		
 		  <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Student
             <span class="caret"></span>
@@ -45,7 +46,7 @@
           </ul>
         </li>
 		
-		
+<!--		
 		  <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Teacher
             <span class="caret"></span>
@@ -57,21 +58,19 @@
 			<li><a href="modules/register.php">My Contract</a></li> 
           </ul>
         </li>
--->		
+	
 		
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-			<li><a href="http://localhost:133/music_school/modules/loginSessionIndex.php">Log in</a></li>
-			<li><a href="http://localhost:133/music_school/modules/register.php">Register</a></li> 
 			<li><a href="http://localhost:133/music_school/pages/about_us.php">About us</a></li>
 			<li><a href="http://localhost:133/music_school/pages/contact.php">Contact us</a></li>
 
           </ul>
         </li>
-        
+-->	       
       </ul>
     </div>
   </div>

@@ -1,3 +1,6 @@
+
+
+
 <?php 
  if (!isset($_SESSION['login']) and !isset($_SESSION['error']))
  {       
@@ -58,31 +61,29 @@ else
 				 </form>
 		         </div><!--login-->"); 
            }
-		  ?>
-<div class="about"> 
- <form id="about-form" class="styled-form" action="ThankYouPage.php" method="post" accept-charset="utf-8">
-    <div style="display:none"><input type="hidden" name="csrfmiddlewaretoken" value="8ece95d139633656ad0371bf53c45b2d" /></div>    
-    <h1 class="pagetitle">About us</h1>
+?>
 
-    <h2>Introduce</h2>
-    <p>QUT Music School is a small Brisbane based music school offering private music lessons for a range of instruments. <br>
-		If you are looking for a singing teacher, a piano teacher, a guitar teacher, a violin teacher, a viola teacher, a cello teacher, a saxophone teacher, a clarinet teacher etc, then you have come to the right place.</p>
-  
-  <div id="menu1">
-    <h2>History</h2>
-    <p>since 1990</p>
-  </div>
+<div class="adminPage">
 
-	
-	
-	
-	
-	
-	
-	
-	
-    <div class="note">
-      <p> </p>
-    </div>
-</div> 
-   
+<script>
+var mydate=new Date()
+var year=mydate.getYear()
+
+if (year < 1000)
+	year+=1900
+
+var day=mydate.getDay()
+var month=mydate.getMonth()
+var daym=mydate.getDate()
+if (daym<10)
+	daym="0"+daym
+
+var dayarray=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+var montharray=new Array("January","February","March","April","May","June","July","August","September","October","November","December")
+	document.write("Today is <b>"+dayarray[day]+", "+montharray[month]+" "+daym+", "+year+"</b>")
+
+</script>
+
+
+
+</div><!--adminPage-->

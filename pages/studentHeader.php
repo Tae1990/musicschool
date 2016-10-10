@@ -18,6 +18,7 @@
           <div><a href="studentPage.php">Profile</a></div>
           <div><a href="instruments.php">Instruments</a></div>
 		  <div><a href="contract.php">Contract</a></div>
+		  <div><a href="enrollment.php">enrollment</a></div>
           <div><a href="contractStudentINFO.php">Contact INFO</a></div>
       </div> 
 </header>
