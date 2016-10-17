@@ -33,7 +33,7 @@
 		  <ul class="nav navbar-nav navbar-right">
 			  <li><a href="index.php">HOME</a></li>
 			  <li><a href="#newsfeed">News</a></li>
-			  <li><a href="modules/lesson.php">Lesson</a></li>
+			  <li><a href="pages/lesson.php">Lesson</a></li>
 
 			  <li class="dropdown">
 				  <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
