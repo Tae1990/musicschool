@@ -59,7 +59,3 @@ else
 		         </div><!--login-->"); 
            }
 		  ?>
-         	          
-<div id="mainimage">
-<img src="../images/student.jpg" alt="Music school">
-</div><!--mainimage-->

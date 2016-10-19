@@ -3,6 +3,7 @@
 		include "../modules/database.php";
 		include "../modules/sanitize.php";
 		include "studentHeader.php";
+		include "../modules/loginSession.php";
 		include "instrumentBody.php";
 		include "footer.php";
 ?>
