@@ -1,5 +1,5 @@
 <?php
-session_start() 
+session_start(); 
 ?>
 <?php
 include "database.php";
@@ -8,6 +8,7 @@ $permission=!empty($_POST['permission'])?'on':'off';
 $loginID = $_POST['autoID'];
 		
 try{$statment=$conn->prepare("UPDATE logins SET permission = '$permission' WHERE loginID=$loginID");
+	$statment->execute();
 	$statment->execute();
 	header('Location:'.$_SERVER["HTTP_REFERER"]);
 		}catch(PDOException $e)

@@ -11,13 +11,13 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Instruments
-                            <small>Student</small>
+                            Hired Instruments
+                            <small>Teacher</small>
                         </h1> 
                     </div>
                 </div>
                 <!-- /.row -->
-				<?php include "instrumentBody_1.php"; ?>
+				<?php include "instrumentHireBody_1.php"; ?>
             </div>
             <!-- /.container-fluid -->
 

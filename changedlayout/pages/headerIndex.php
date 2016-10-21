@@ -40,7 +40,7 @@
 					<span class="caret"></span>
 				  </a>
 				  <ul class="dropdown-menu">
-					  <li><a href="http://localhost:133/musicschool/modules/loginSessionIndex.php">Log in</a></li>
+					  <li><a href="http://localhost:133/musicschool/modules/test.php">Log in</a></li>
 					  <li><a href="http://localhost:133/musicschool/pages/register.php">Register</a></li>
 					  <li><a href="http://localhost:133/musicschool/pages/about_us.php">About us</a></li>
 					  <li><a href="http://localhost:133/musicschool/pages/contact.php">Contact us</a></li>

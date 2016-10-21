@@ -7,7 +7,7 @@
 	
 	include "headerPage.php";
     include "registerStudentBody.php";
-	include "footer.php";
+	//include "footer.php";
 ?>
 
 

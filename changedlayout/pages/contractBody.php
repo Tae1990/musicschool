@@ -19,7 +19,7 @@
 						
 						
 <?php
-    include "contract_1.php";
+    include "studnet_contract.php";
 ?>						
 						
 						

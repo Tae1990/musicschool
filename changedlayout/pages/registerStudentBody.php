@@ -1,132 +1,148 @@
 <div class="registerPage">
 <form action="#" method="post">
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script> <!-- Firefox input type date -->
+<script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
+<script>
+webshims.setOptions('forms-ext', {types: 'date'});
+webshims.polyfill('forms forms-ext');
+$.webshims.formcfg = {
+en: {
+    dFormat: '-',
+    dateSigns: '-',
+    patterns: {
+        d: "yy-mm-dd"
+    }
+}
+};
+</script>
 
 
+<fieldset>
+<legend>Personal detail:</legend>
 
 
-<form name="htmlform" method="post" action="html_form_send.php">
-  <table width="450px">
-  </tr>
- 
+      <table width="450px">
+      </tr>
+      
+      
+      <tr>
+        <td valign="top">
+          <label for="userName"><h4><strong>user name:</strong></label>
+          </td>
+          <td valign="top">
+            <input name="userName" type="text"  size="45" maxlength="45" required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" title="User name should be between 2 and 20 digit">
+          </td>
+        </tr>	  
+        
+        <tr>
+          <td valign="top">
+            <label for="password"><h4><strong>password:</strong></label>
+            </td>
+            <td valign="top">
+              <input name="password" type="password"  size="45" maxlength="45" required pattern=".{6,}" title="Six or more">
+            </td>
+          </tr>	  
+          
+          
+          <tr>
+            <td valign="top">
+              <label for="firstName">first name:</label>
+            </td>
+            <td valign="top">
+              <input name="firstName" type="text" size="45" maxlength="45" pattern="[A-Za-z]*" required title="Only character please">
+            </td>
+          </tr>
+          
+          
+          <tr>
+            <td valign="top"">
+              <label for="lastName">last name:</label>
+            </td>
+            <td valign="top">
+              <input name="lastName" type="text"  size="45" maxlength="45" pattern="[A-Za-z]*" required title="Only character please">
+            </td>
+          </tr>
+          
+          <tr>
+            <td valign="top">
+              <label for="telephone">gender:</label>
+            </td>
+            <td valign="top">
+              <input name="gender" type="text"  size="45" maxlength="255" required>
+            </td>
+          </tr>
+          
+          
+          <tr>
+            <td valign="top">
+              <label for="dateOfBirth">dateOfBirth:</label>
+            </td>
+            <td valign="top">
+              <input name="dateOfBirth" type="date"  required >
+            </td>
+          </tr>
+          
+          <tr>
+            <td valign="top">
+              <label for="phoneNumber">Homephone number:</label>
+            </td>
+            <td valign="top">
+              <input name="phoneNumber" type="text" pattern="[0-9]{10}" size="45" maxlength="10" required title="Only 10 digit number">
+            </td>
+          </tr>
+          
+          
+          <tr>
+            <td valign="top">
+              <label for="mobileNumber">mobile number:</label>
+            </td>
+            <td valign="top">
+              <input name="mobileNumber" type="text" pattern="[0-9]{10}" size="45" maxlength="10" required title="Only 10 digit number"><br>
+            </td>
+          </tr>
+          
+          
+          <tr>
+            <td valign="top">
+              <label for="address">address:</label>
+            </td>
+            <td valign="top">
+              <input name="address" type="text"  size="45" maxlength="255" required>
+            </td>
+          </tr>
+          
+          
+          <tr>
+            <td valign="top">
+              <label for="email">email:</label>
+            </td>
+            <td valign="top">
+              <input name="email" type="email"  size="45" maxlength="45" required>
+            </td>
+          </tr>
+          
+          
+          <tr>
+            <td valign="top">
+              <label for="faceBook">facebook</label>
+            </td>
+            <td valign="top">
+              <input name="faceBook" type="email"  size="45" maxlength="45" required>
+            </td>
+          </tr>
+          
+          
+          
 
-  <tr>
-    <td valign="top">
-      <label for="userName"><h4><strong>user name:</strong></label>
-      </td>
-      <td valign="top">
-        <input name="userName" type="text"  size="45" maxlength="45" required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" title="User name should be between 2 and 20 digit">
-      </td>
-    </tr>	  
-    
-    <tr>
-      <td valign="top">
-        <label for="password"><h4><strong>password:</strong></label>
-        </td>
-        <td valign="top">
-         <input name="password" type="password"  size="45" maxlength="45" required pattern=".{6,}" title="Six or more">
-        </td>
-      </tr>	  
- 
-      
-      <tr>
-        <td valign="top">
-          <label for="firstName">first name:</label>
-        </td>
-        <td valign="top">
-          <input name="firstName" type="text" size="45" maxlength="45" pattern="[A-Za-z]*" required title="Only character please">
-        </td>
-      </tr>
-      
-      
-      <tr>
-        <td valign="top"">
-          <label for="lastName">last name:</label>
-        </td>
-        <td valign="top">
-          <input name="lastName" type="text"  size="45" maxlength="45" pattern="[A-Za-z]*" required title="Only character please">
-        </td>
-      </tr>
-      
-      <tr>
-        <td valign="top">
-          <label for="telephone">gender:</label>
-        </td>
-        <td valign="top">
-          <input name="gender" type="text"  size="45" maxlength="255" required>
-        </td>
-      </tr>
-      
-      
-      <tr>
-        <td valign="top">
-          <label for="dateOfBirth">dateOfBirth:</label>
-        </td>
-        <td valign="top">
-          <input name="dateOfBirth" type="date"  required >
-        </td>
-      </tr>
-      
-      <tr>
-        <td valign="top">
-          <label for="phoneNumber">Homephone number:</label>
-        </td>
-        <td valign="top">
-          <input name="phoneNumber" type="text" pattern="[0-9]{10}" size="45" maxlength="10" required title="Only 10 digit number">
-        </td>
-      </tr>
-      
-      
-      <tr>
-        <td valign="top">
-          <label for="mobileNumber">mobile number:</label>
-        </td>
-        <td valign="top">
-          <input name="mobileNumber" type="text" pattern="[0-9]{10}" size="45" maxlength="10" required title="Only 10 digit number"><br>
-        </td>
-      </tr>
-      
-   
-      <tr>
-        <td valign="top">
-          <label for="address">address:</label>
-        </td>
-        <td valign="top">
-         <input name="address" type="text"  size="45" maxlength="255" required>
-        </td>
-      </tr>
-      
-      
-      <tr>
-        <td valign="top">
-          <label for="email">email:</label>
-        </td>
-        <td valign="top">
-        <input name="email" type="email"  size="45" maxlength="45" required>
-        </td>
-      </tr>
-      
-      
-      <tr>
-        <td valign="top">
-          <label for="faceBook">facebook</label>
-        </td>
-        <td valign="top">
-          <input name="faceBook" type="email"  size="45" maxlength="45" required>
-        </td>
-      </tr>
-      
-      
+      </table>
 
-    </tr>
-    <tr>
-      <td colspan="2" style="text-align:center">
-         <button type="submit" class="register"> Register</button>
-      </td>
-    </tr>
-  </table>
-</form>
-
-             
+<fieldset>
+<legend>Parent's detail:</legend>
+<label>first name : </label><input name="parentFirstName" type="text" size="45" maxlength="45" pattern="[A-Za-z]*" required title="Only character please"><br>
+<label>last name : </label><input name="parentLastName" type="text"  size="45" maxlength="45" pattern="[A-Za-z]*" required title="Only character please"><br>
+<label>phone number : </label><input name="parentPhoneNumber" type="text" pattern="[0-9]{10}" size="45" maxlength="10" required title="Only 10 digit number"><br>
+               <button type="submit" class="register"> Register</button>
+</fieldset>
 </form>
  <?php
 	if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -141,6 +157,9 @@
     $address = !empty($_POST['address']) ? test_user_input(($_POST['address'])) : null;
 	$email = !empty($_POST['email']) ? test_user_input(($_POST['email'])) : null;
 	$faceBook = !empty($_POST['faceBook']) ? test_user_input(($_POST['faceBook'])) : null;
+	$parentFirstName = !empty($_POST['parentFirstName']) ? test_user_input(($_POST['parentFirstName'])) : null;
+	$parentLastName = !empty($_POST['parentLastName']) ? test_user_input(($_POST['parentLastName'])) : null;
+	$parentPhoneNumber = !empty($_POST['parentPhoneNumber']) ? test_user_input(($_POST['parentPhoneNumber'])) : null;
 	
 	$password_hash = password_hash($password, PASSWORD_DEFAULT);
 	try{
@@ -156,8 +175,9 @@
 		$stmt2->execute();
 		$newId=$conn->lastInsertId();
 		//insert into users table
-		$stmt3 = $conn->prepare("INSERT INTO students(firstName, lastName, dateOfBirth, address, gender, phoneNumber, mobileNumber, email, faceBook, loginID)
-		                        VALUES(:firstName, :lastName, :dateOfBirth, :address, :gender, :phoneNumber, :mobileNumber, :email, :faceBook, :loginID)");
+		$stmt3 = $conn->prepare("INSERT INTO students(firstName, lastName, dateOfBirth, address, gender, phoneNumber, mobileNumber, email, faceBook, loginID, grade)
+		                        VALUES(:firstName, :lastName, :dateOfBirth, :address, :gender, :phoneNumber, :mobileNumber, :email, :faceBook, :loginID, :grade)");
+		$grade = 'new';
 		$stmt3->bindParam(':firstName', $firstName);
 	    $stmt3->bindParam(':lastName', $lastName);
 		$stmt3->bindParam(':dateOfBirth', $dateOfBirth);
@@ -168,7 +188,17 @@
 	    $stmt3->bindParam(':email', $email);
 		$stmt3->bindParam(':faceBook', $faceBook);
 		$stmt3->bindParam(':loginID', $newId);
+		$stmt3->bindParam(':grade', $grade);
 		$stmt3->execute();
+		$newId1=$conn->lastInsertId();
+		//insert into logins table
+		$stmt4 = $conn->prepare("INSERT INTO parents(studentID, parentFirstName, parentLastName, parentPhoneNumber)
+		                        VALUES(:studentID, :parentFirstName, :parentLastName, :parentPhoneNumber)");
+		$stmt4->bindParam(':studentID', $newId1);
+		$stmt4->bindParam(':parentFirstName', $parentFirstName);
+	    $stmt4->bindParam(':parentLastName', $parentLastName);
+	    $stmt4->bindParam(':parentPhoneNumber', $parentPhoneNumber);
+		$stmt4->execute();
 	  echo "New records created successfully";
 	}
 	catch(PDOException $e)

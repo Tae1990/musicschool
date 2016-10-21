@@ -35,7 +35,7 @@ include "sanitize.php";
 				    else if($role == 'student')
 				    { 
 					$_SESSION['userName']=$userName;
-					header('Location: ../pages/studentInstrument.php');
+					header('Location: ../pages/studentPage.php');
 				    }
                 }
 				else

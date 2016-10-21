@@ -9,7 +9,7 @@
 	//include "enrollment_1.php";
     //include "gogo.php";
 	//include "footer.php";
-	include "contractStudentINFOBody_1.php";
+	include "contractStudentINFOBodypage.php";
 	
 	
 ?>

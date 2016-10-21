@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <!-- /.row -->
-				<?php include "gogo.php"; ?>
+				<?php include "enrollment_scheduler.php"; ?>
             </div>
             <!-- /.container-fluid -->
 

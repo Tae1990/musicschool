@@ -5,10 +5,8 @@
 	//include "studentHeader.php";
 	
 	include "new_navi.php";
-	include "enrollment_1.php";
+	include "enrollment_body.php";
     //include "gogo.php";
 	//include "footer.php";
-	
-	
 	
 ?>

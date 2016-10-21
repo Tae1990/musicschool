@@ -120,7 +120,7 @@ else
  <b class="caret"></b></a>
 				  <ul class="dropdown-menu">
                         <li>
-                            <a href="studentPage.php"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="teacherPage.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         
                         <li class="divider"></li>
@@ -140,20 +140,13 @@ else
                     </li>
                    
                     <li>
-                        <a href="studentInstrument.php"><i class="fa fa-fw fa-table"></i> Instruments </a>
+                        <a href="teacherInstrument.php"><i class="fa fa-fw fa-table"></i> Instruments </a>
                     </li>
                     <li>
-                        <a href="studentInstrumentHire.php"><i class="fa fa-fw fa-edit"></i> Hired Instruments </a>
+                        <a href="teacherInstrumentHire.php"><i class="fa fa-fw fa-edit"></i> Hired Instruments </a>
                     </li>
-                    <li>
-                        <a href="contract.php"><i class="fa fa-fw fa-desktop"></i> Contract </a>
-                    </li>
-					 <li>
-                        <a href="contractStudentINFO.php"><i class="fa fa-fw fa-desktop"></i> Contract Info </a>
-                    </li>
-                    <li>
-                        <a href="enrollment.php"><i class="fa fa-fw fa-wrench"></i> Enrollment </a>
-                    </li>
+          
+					
 					
 <!--				
                     <li>

@@ -12,7 +12,7 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Instruments
-                            <small>Student</small>
+                            <small>Teacher</small>
                         </h1> 
                     </div>
                 </div>

@@ -1,65 +1,4 @@
-<?php 
- if (!isset($_SESSION['login']) and !isset($_SESSION['error']))
- {       
-	echo(
-          "<div class=\"login\">
-           <form action=\"../modules/login.php\" method=\"post\">
-           <div class=\"form-group\">
-           <label for=\"userName\">User name</label>
-           <input type=\"text\" id=\"userName\" name=\"userName\" placeholder=\"Enter userName\" required>
-           </div>
-           <div class=\"form-group\">
-           <label for=\"password\">Password</label>
-           <input type=\"password\" id=\"password\" name=\"password\" placeholder=\"Enter password\">
-           </div>
-           <button type=\"submit\"> Login</button>
-           </form>
-           <form action=\"register_student.php\">
-           <input type=\"submit\" value=\"Register as student\">
-           </form>
-		   <form action=\"register_teacher.php\">
-           <input type=\"submit\" value=\"Register as teacher\">
-           </form>
-		   
-		  
-		  </div><!--login-->");
- }
- elseif ( isset($_SESSION['error']) )
- {
-	
-	 echo("<div class=\"login\">
-           <form action=\"../modules/login.php\" method=\"post\">
-           <div class=\"form-group\">
-           <label for=\"userName\">User name</label>
-           <input type=\"text\" id=\"userName\" name=\"userName\" placeholder=\"Enter userName\" required>
-            </div>
-            <div class=\"form-group\">
-              <label for=\"password\">Password</label>
-              <input type=\"password\" id=\"password\" name=\"password\" placeholder=\"Enter password\">
-            </div>
-              <button type=\"submit\"> Login</button>
-              </form>
-              <form action=\"register_student.php\">
-           <input type=\"submit\" value=\"Register as student\">
-           </form>
-		   <form action=\"register_teacher.php\">
-           <input type=\"submit\" value=\"Register as teacher\">
-           </form>
-			  ".$_SESSION['error']."
-			</div><!--login-->");	
-	unset($_SESSION['error']);		  
- }
-else
-{
-	echo ("<div class=\"login\">
-		         <form action=\"../modules/logout.php\" method=\"post\">". $_SESSION['userName'] . "
-				 <br>
-				 <button type=\"submit\"> Log out</button>
-				 </form>
-		         </div><!--login-->"); 
-           }
-?>
-         	          
+      	          
 <div class="adminPage">
 
 <?php
@@ -200,11 +139,16 @@ $result2=$conn->query($sql2);
 $row2=$result2->fetch();
 echo "Your first Name is ".$row2['firstName'];
 ?>
+
 <form action="teacherPage.php" method="post">
-  <label for="firstName">Insert the name you want to change:</label> <input type="text" size="20" maxlength="45" name="changed_firstName"
-                                    pattern="[A-Za-z]+" required title="Only character please">
+  <label for="firstName">Insert the name you want to change:</label> 
+  <input type="text" size="20" maxlength="45" name="changed_firstName" 
+	value="<?php echo $row2['firstName'] ?>" 
+  pattern="[A-Za-z]+" required title="Only character please">
   <input type="submit" value="Confirm"><br>
+	 
 </form><br><br>
+
 
 
 
@@ -217,11 +161,13 @@ $loginID_from_loginsTable = $row['loginID'];
 $sql2="SELECT lastName FROM teachers WHERE loginID ='$loginID_from_loginsTable'";
 $result2=$conn->query($sql2);
 $row2=$result2->fetch();
-echo "Your last Name is ".$row2['lastName'];
+echo "Your last Name is <strong>".$row2['lastName']; echo"</strong>"
 ?>
 <form action="teacherPage.php" method="post">
- <label for="lastname">Insert the name you want to change:</label> <input type="text" size="20" maxlength="45" name="changed_lastName" 
-                                    pattern="[A-Za-z]+" required title="Only character please">
+ <label for="lastname">Insert the name you want to change:</label> <input type="text"  size="20" maxlength="45" name="changed_lastName" 
+                                  value="<?php echo $row2['lastName'] ?>" 
+								  pattern="[A-Za-z]+" required title="Only character please">
+
  <input type="submit" value="Confirm"><br>
 </form><br><br>
 
@@ -235,12 +181,13 @@ $loginID_from_loginsTable = $row['loginID'];
 $sql2="SELECT dateOfBirth FROM teachers WHERE loginID ='$loginID_from_loginsTable'";
 $result2=$conn->query($sql2);
 $row2=$result2->fetch();
-echo "Your birday is ".$row2['dateOfBirth'];
-echo '<br>';
+echo "Your birday is <strong>".$row2['dateOfBirth']; 
+echo '</strong> <br>';
 ?>
 <form action="teacherPage.php" method="post">
  Insert the birth day you want to change: <input type="date" size="20" maxlength="45" name="changed_dateOfBirth" required
-                                          pattern="[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
+                                  value="<?php echo $row2['dateOfBirth'] ?>"       
+										pattern="[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
                                           requred title="Follow this format 1987-09-17">
 <input type="submit" value="Confirm"><br>
 </form><br><br>
@@ -254,11 +201,12 @@ $loginID_from_loginsTable = $row['loginID'];
 $sql2="SELECT address FROM teachers WHERE loginID ='$loginID_from_loginsTable'";
 $result2=$conn->query($sql2);
 $row2=$result2->fetch();
-echo "Your address is ".$row2['address'];
-echo '<br>';
+echo "Your address is <strong>".$row2['address'];
+echo '</strong> <br>';
 ?>
 <form action="teacherPage.php" method="post">
- Insert the address you want to change:<input type="text" size="20" maxlength="45" name="changed_address" required>
+ Insert the address you want to change:<input type="text" size="20" maxlength="45" value="<?php echo $row2['address'] ?>" name="changed_address" required>
+  
  <input type="submit" value="Confirm"><br>
 </form><br><br>
 
@@ -273,11 +221,12 @@ $loginID_from_loginsTable = $row['loginID'];
 $sql2="SELECT mobileNumber FROM teachers WHERE loginID ='$loginID_from_loginsTable'";
 $result2=$conn->query($sql2);
 $row2=$result2->fetch();
-echo "Your mobile-number is ".$row2['mobileNumber'];
-echo '<br>';
+echo "Your mobile-number is <strong>".$row2['mobileNumber'];
+echo '</strong> <br>';
 ?>
 <form action="teacherPage.php" method="post">
  Insert the your mobile-number you want to change: <input type="text" size="12" maxlength="12"
+ value="<?php echo $row2['mobileNumber'] ?>"
                                             required title="Only 10 digit number"
                                             pattern="[0-9]+" name="changed_mobileNumber"
                                             maxlength="10" minlength='8'>
@@ -295,11 +244,11 @@ $loginID_from_loginsTable = $row['loginID'];
 $sql2="SELECT phoneNumber FROM teachers WHERE loginID ='$loginID_from_loginsTable'";
 $result2=$conn->query($sql2);
 $row2=$result2->fetch();
-echo "Your parent's phoneNumber is ".$row2['phoneNumber'];
-echo '<br>';
+echo "Your parent's phoneNumber is <strong>".$row2['phoneNumber'];
+echo '</strong> <br>';
 ?>
 <form action="teacherPage.php" method="post">
- Insert the your mobile-number you want to change:<input type="text" size="12" maxlength="12"
+ Insert the your mobile-number you want to change:<input type="text" size="12" maxlength="12"  value="<?php echo $row2['phoneNumber'] ?>"
                                             required title="Only 10 digit number"
                                             pattern="[0-9]+" name="changed_phoneNumber"
                                             maxlength="10" minlength='8'>
@@ -316,11 +265,11 @@ $loginID_from_loginsTable = $row['loginID'];
 $sql2="SELECT email FROM teachers WHERE loginID ='$loginID_from_loginsTable'";
 $result2=$conn->query($sql2);
 $row2=$result2->fetch();
-echo "Your e-mail is ".$row2['email'];
-echo '<br>';
+echo "Your e-mail is <strong>".$row2['email'];
+echo '</strong> <br>';
 ?>
 <form action="teacherPage.php" method="post">
- Insert e-mail you want to change:<input type="email" size="20" maxlength="30" name="changed_email"
+ Insert e-mail you want to change:<input type="email" size="20" maxlength="30" name="changed_email" value="<?php echo $row2['email'] ?>"
                                   pattern="[A-Za-z.0-9]+[@]+[A-Za-z0-9]+[.][A-Za-z0-9.]*" maxlength=50
                                   required title="ex>micheal@yahoo.co.kr" >
  <input type="submit" value="Confirm"><br>
@@ -336,11 +285,11 @@ $loginID_from_loginsTable = $row['loginID'];
 $sql2="SELECT faceBook FROM teachers WHERE loginID ='$loginID_from_loginsTable'";
 $result2=$conn->query($sql2);
 $row2=$result2->fetch();
-echo "Your facebook account is ".$row2['faceBook'];
-echo '<br>';
+echo "Your facebook account is <strong>".$row2['faceBook'];
+echo '</strong> <br>';
 ?>
 <form action="teacherPage.php" method="post">
- Insert facebook account you want to change:<input type="eamil" size="20" maxlength="30" name="changed_facebook"
+ Insert facebook account you want to change:<input type="eamil" size="20" value="<?php echo $row2['faceBook'] ?>" maxlength="30"  name="changed_facebook"  
                                              pattern="[A-Za-z.0-9]+[@]+[A-Za-z0-9]+[.][A-Za-z0-9.]*" maxlength=50
                                              required title="ex>micheal@facebook.com" >
  <input type="submit" value="Confirm"><br>
