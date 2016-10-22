@@ -5,29 +5,26 @@
 	$row1=$conn->query("SELECT loginID FROM logins WHERE userName ='$userName'")->fetch();
 	$loginID = $row1['loginID'];
 	$nRows = $conn->query("select count(contracts.studentContractID) AS NumberOfContract from contracts
-	                       INNER JOIN students ON contracts.studentID = students.studentID
-						   INNER JOIN logins ON students.loginID = '$loginID'")->fetchColumn();
+	                       INNER JOIN lessons ON contracts.lessonID = lessons.lessonID
+						   INNER JOIN teachers ON lessons.teacherID = teachers.teacherID
+						   INNER JOIN logins ON teachers.loginID = '$loginID'")->fetchColumn();
     if ($nRows < 1)
     {
-	   echo "You don't have any contracts with teachers";
+	   echo "You don't have any contracts with students";
     }
     if ($nRows > 0){ 
 		try{
-			//Get loginID from userName
-			$userName = $_SESSION['userName'];
-			$row2=$conn->query("SELECT loginID FROM logins WHERE userName ='$userName'")->fetch();
-			$loginID = $row2['loginID'];
 			//prepare query
 			$stmt = $conn->prepare("SELECT lessons.lessonType, lessons.lessonDuration, lessons.lessonPlace, 
-								   contracts.studentStartDate, contracts.studentEndDate, teachers.firstName from contracts, lessons, teachers, students, 
+								   contracts.studentStartDate, contracts.studentEndDate, students.firstName from contracts, lessons, teachers, students, 
 								   logins where contracts.lessonID = lessons.lessonID and lessons.teacherID = teachers.teacherID and 
-								   contracts.studentID = students.studentID and students.loginID = logins.loginID and '$loginID' = students.loginID");
+								   contracts.studentID = students.studentID and students.loginID = logins.loginID and '$loginID' = teachers.loginID");
 				//execute
 				$stmt->execute();
 				// retrieve all rows
 				echo ("<table padding:8px width=80% border=0 align='center'>");
 				echo ("<tr><th> Lesson Type</th><th>Lesson Duration</th>
-					   <th>Lesson Place</th><th>Start Date</th><th>End Date</th><th>Teacher Name</th></tr>");
+					   <th>Lesson Place</th><th>Start Date</th><th>End Date</th><th>Student Name</th></tr>");
 
 				while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 				{

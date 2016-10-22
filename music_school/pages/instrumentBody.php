@@ -1,34 +1,50 @@
 <div class="products">          
 <?php
-try{
-	//prepare query
-	$stmt = $conn->prepare("SELECT * FROM instruments where display ='on'");
-	//execute
-	$stmt->execute();
-	//retrive all rows
-	while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-	{
-		$image = $row['image'];
-		$hireCost = $row['hireCost'];
- 		$instrumentName = $row['instrumentName'];
- 		$instrumentID=$row['instrumentID'];
-		$condition=$row['condition'];
+    //Get loginID from userName
+    $userName = $_SESSION['userName'];
+	$row1=$conn->query("SELECT loginID FROM logins WHERE userName ='$userName'")->fetch();
+	$loginID = $row1['loginID'];
+    $nRows1 = $conn->query("select count(hiredInstruments.hiredInstrumentID) AS NumberOfContract from hiredInstruments
+	       				   INNER JOIN logins ON hiredInstruments.loginID = '$loginID'")->fetchColumn();
+    if ($nRows1 > 0){
+		   echo "You cannot borrow more than one instrument";
+	}
+	if ($nRows1 < 1){ 
+		$nRows = $conn->query("select count(*) from instruments where display ='on' ")->fetchColumn();
+		if ($nRows < 1)
+		{
+		   echo "There is no instrument available";
+		}
+		if ($nRows > 0){ 
+			try{
+				//prepare query
+				$stmt = $conn->prepare("SELECT * FROM instruments where display ='on'");
+				//execute
+				$stmt->execute();
+				//retrive all rows
+				while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+				{
+					$image = $row['image'];
+					$hireCost = $row['hireCost'];
+					$instrumentName = $row['instrumentName'];
+					$instrumentID=$row['instrumentID'];
+					$condition=$row['condition'];
 
-		echo '<div class="box"><img src="' . $image . '" alt="instrument pickture" ><br/>';
- 		echo 'Instrument Name: "' . $instrumentName .'"<br />';
-		echo 'Condition: "' . $condition .'"<br />';
- 		$amount = number_format($hireCost);
- 		echo "Price: $" .$amount.".00<br/>";
- 		echo "<form name=\"add\" method=\"get\" action=\"#\">
-            <input type=\"hidden\" name=\"instrumentID\" value=".$instrumentID.">
-			<input type=\"hidden\" name=\"display\" value=\"off\">
-			<input type=submit title='Hire Instrument' value='Hire Instrument' ></form></div>";
-	}//1st while loop
-}// 1st try
+					echo '<div class="box"><img src="' . $image . '" alt="instrument pickture" ><br/>';
+					echo 'Instrument Name: "' . $instrumentName .'"<br />';
+					echo 'Condition: "' . $condition .'"<br />';
+					$amount = number_format($hireCost);
+					echo "Price: $" .$amount.".00<br/>";
+					echo "<form name=\"add\" method=\"get\" action=\"#\">
+						<input type=\"hidden\" name=\"instrumentID\" value=".$instrumentID.">
+						<input type=\"hidden\" name=\"display\" value=\"off\">
+						<input type=submit title='Hire Instrument' value='Hire Instrument' ></form></div>";
+				}//1st while loop
+			}// 1st try
 catch(PDOException $e) 
 {
 	echo $e->getMessage();
-}
+	}}}
 ?>
 
 </div> <!-- close product div -->

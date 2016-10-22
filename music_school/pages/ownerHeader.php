@@ -15,6 +15,7 @@
      <h1 id="websiteTitle">Music School</h1>
    </div><!--top-->
       <div class="navigation">
-          <div><a href="ownerPage.php">Permission</a></div>
+          <div><a href="ownerPage.php">Owner Page</a></div>
+		  <div><a href="ownerContractPermission.php">Permission for contract</a></div>
       </div> 
 </header>
