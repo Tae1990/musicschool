@@ -4,8 +4,8 @@
     $userName = $_SESSION['userName'];
 	$row1=$conn->query("SELECT loginID FROM logins WHERE userName ='$userName'")->fetch();
 	$loginID = $row1['loginID'];
-    $nRows1 = $conn->query("select count(hiredInstruments.hiredInstrumentID) AS NumberOfContract from hiredInstruments
-	       				   INNER JOIN logins ON hiredInstruments.loginID = '$loginID'")->fetchColumn();
+    $nRows1 = $conn->query("select count(hiredinstruments.hiredInstrumentID) AS NumberOfContract from hiredinstruments
+	       				   INNER JOIN logins ON hiredinstruments.loginID = '$loginID'")->fetchColumn();
     if ($nRows1 > 0){
 		   echo "You cannot borrow more than one instrument";
 	}

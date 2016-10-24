@@ -1,8 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<?php
+ if (!isset($_SESSION['login']) and !isset($_SESSION['error']))
+ {
+	echo(
+          "<div class=\"login\">
+           <form action=\"../modules/login.php\" method=\"post\">
+           <div class=\"form-group\">
+           <label for=\"userName\">User name</label>
+           <input type=\"text\" id=\"userName\" name=\"userName\" placeholder=\"Enter userName\" required>
+           </div>
+           <div class=\"form-group\">
+           <label for=\"password\">Password</label>
+           <input type=\"password\" id=\"password\" name=\"password\" placeholder=\"Enter password\">
+           </div>
+           <button type=\"submit\"> Login</button>
+           </form>
+           <form action=\"register_student.php\">
+           <input type=\"submit\" value=\"Register as student\">
+           </form>
+		   <form action=\"register_teacher.php\">
+           <input type=\"submit\" value=\"Register as teacher\">
+           </form>
+
+
+		  </div><!--login-->");
+ }
+ elseif ( isset($_SESSION['error']) )
+ {
+
+	 echo("<div class=\"login\">
+           <form action=\"../modules/login.php\" method=\"post\">
+           <div class=\"form-group\">
+           <label for=\"userName\">User name</label>
+           <input type=\"text\" id=\"userName\" name=\"userName\" placeholder=\"Enter userName\" required>
+            </div>
+            <div class=\"form-group\">
+              <label for=\"password\">Password</label>
+              <input type=\"password\" id=\"password\" name=\"password\" placeholder=\"Enter password\">
+            </div>
+              <button type=\"submit\"> Login</button>
+              </form>
+              <form action=\"register_student.php\">
+           <input type=\"submit\" value=\"Register as student\">
+           </form>
+		   <form action=\"register_teacher.php\">
+           <input type=\"submit\" value=\"Register as teacher\">
+           </form>
+			  ".$_SESSION['error']."
+			</div><!--login-->");
+	unset($_SESSION['error']);
+ }
+else
+{
+	echo ("<div class=\"login\">
+		         <form action=\"../modules/logout.php\" method=\"post\">". $_SESSION['userName'] . "
+				 <br>
+				 <button type=\"submit\"> Log out</button>
+				 </form>
+		         </div><!--login-->");
+           }
+		  ?>
 <div class="adminPage">
 </head>
 <body>
 
-<script>var=userName;var teacherID;var lessonID;var showResultSwitch=false;var teacherStartDate;var teacherEndtDate;var chosenStartDate;var chosenEndDate;var lessonDuration;var lessonCost;var grade;var permission;</script>  Choose a teacher you want:
+<script>var=userName;var teacherID;var lessonID;var showResultSwitch=false;var teacherStartDate;var teacherEndtDate;var chosenStartDate;var chosenEndDate;var lessonDuration;var lessonCost;var grade;var permission;var real_month_diff;var numberPerWeek;var totalLessonCost;</script>  Choose a teacher you want:
      <select name="teachers" onchange="getTeacherID(this.value)">
        <option value="">Select a teacher</option>
        <?php
@@ -19,7 +83,6 @@
           $row=$result1->fetch(PDO::FETCH_ASSOC);
         } ?>
      </select><br><br>
-
 
      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
      <?php $userName=$_SESSION['userName'];?>
@@ -41,12 +104,6 @@
               type:'post',
               data:'teacherID='+val,
               async: false
-              /*success:function(data){
-                //alert('lesson ID is '+data.lessonID+' and lesson type is '+data.lessonType);
-                var d1=data.lessonID;
-                var d2=data.lessonType;
-                // $("#classList2").html(data);
-              }*/
             }).responseText);
             //alert('Lesson ID is '+data.lesson1ID);
             var _lesson1ID=data.lesson1ID;
@@ -54,9 +111,7 @@
             var _lesson3ID=data.lesson3ID;
             var _lesson4ID=data.lesson4ID;
             var _lesson5ID=data.lesson5ID;
-            //teacherStartDate=data.teacherStartDate;
-            //teacherEndDate=data.teacherEndDate;
-            //alert('teacher start-date is '+teacherStartDate);
+
             $.ajax({
               url:'classRegis.php',
               type:'post',
@@ -67,12 +122,11 @@
               }
             });
         }
-
         //alert('This is '+ajaxResult);
      </script>
 
 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
  <script type="text/javascript">
     //var ajaxResult;
     function getLessonID(val,val2){
@@ -103,9 +157,9 @@
         if(showResultSwitch==true){
           $("#resultDisplay").show();
         }else{
-          alert('this is not working now!!');
+          //alert('this is not working now!!');
         }
-        var arr=[];
+        var monthArr=[];
         $.ajax({
           url:'teacherStartDate.php',
           dataType:'json',
@@ -113,38 +167,17 @@
           data:{teacherID:teacherID,teacherStartDate:teacherStartDate,teacherEndDate:teacherEndDate},
           async: false,
           success:function(data){
-            arr.push(data.month1);
-            arr.push(data.month2);
-            arr.push(data.month3);
-            arr.push(data.month4);
-            arr.push(data.month5);
-            arr.push(data.month6);
-            arr.push(data.month7);
-            arr.push(data.month8);
-            arr.push(data.month9);
-            arr.push(data.month10);
-            arr.push(data.month11);
-            arr.push(data.month12);
+            var i;
+            for(i=0; i<data.length ; i++){
+              monthArr.push(data[i]);
+            }
           }
         });
-        var month1=arr[0];
-        var month2=arr[1];
-        var month3=arr[2];
-        var month4=arr[3];
-        var month5=arr[4];
-        var month6=arr[5];
-        var month7=arr[6];
-        var month8=arr[7];
-        var month9=arr[8];
-        var month10=arr[9];
-        var month11=arr[10];
-        var month12=arr[11];
 
         $.ajax({
            url:'dropDownDB.php',
            type:'post',
-           data: {month1:month1,month2:month2,month3:month3,month4:month4,month5:month5,month6:month6,month7:month7,month8:month8,month9:month9,month10:month10,month11:month11,month12:month12},
-           //async: false
+           data: {monthArr:monthArr},
            success:function(data){
              //alert('lesson ID is '+data.lessonType);
              $("#teacherStartDate").html(data);
@@ -164,32 +197,44 @@
    <select name="teacherStartDate" onchange="getTeachertEndDate(this.value)" id="teacherEndDate">
      <option>choose start-date first!</option>
    </select>
-
-   <?php //어떤 형태로 보여줄 것인가? 라디오 버튼 ?>
  </div><br>
 
- <div class='resultDisplay2' id='resultDisplay2'>
-   Choose one between 30 minutes and 60 minutes<br>
-    <input type="radio" name="lessonDuration" value=30 onchange="getDurationFromOld(this.value)" id="duration"> 30 minutes<br>
-    <input type="radio" name="lessonDuration" value=60 onchange="getDurationFromOld(this.value)" id="duration"> 60 minutes<br>
+ <div class='decide_minute' id='decide_minute'>
+
+   Choose lesson duration time in a day. <br>
+
+   <input type="radio" name="lessonDuration" value=1 onchange="getDuration(this.value)" id="duration"> 30 minutes<br>
+   <input type="radio" name="lessonDuration" value=2 onchange="getDuration(this.value)" id="duration"> 60 minutes<br><br>
+ </div>
+
+ <div class='resultDisplay_numb_week' id='resultDisplay_numb_week'>
+
+   Choose one between 1-3 times per a week!<br>
+   Lesson Cost will differ according to the number you choose!!<br>
+    <input type="radio" name="chooseWeekNumb" value=1 onchange="chooseWeekNumb(this.value)" id="chooseWeekNumb"> 1 time<br>
+    <input type="radio" name="chooseWeekNumb" value=2 onchange="chooseWeekNumb(this.value)" id="chooseWeekNumb"> 2 times<br>
+    <input type="radio" name="chooseWeekNumb" value=3 onchange="chooseWeekNumb(this.value)" id="chooseWeekNumb"> 3 times<br>
  </div><br>
+
+
 
 <div class='costDisplay' id='costDisplay'>
     Your lesson cost is '<label id='showCost'></label>'.
-<?php
-/*
-final submit
-어떠한 형태로 전개할 것인가?
-제출 후에 DB로 자료를 넣는건 자연스러운가 */ ?>
+
 <br><br>
 
 <form>
-<input type='button' onclick="finalClick(this.value)" name='finalButton' id='finalButton' value='Final Submit'>
+<input type='button' id='finalButton' onclick="finalClick(this.value)" name='finalButton' id='finalButton' value='Final Submit'>
 </div>
+
+<script>
+
+</script>
 
  <script>
   $("#resultDisplay").hide();
-  $("#resultDisplay2").hide();
+  $("#resultDisplay_numb_week").hide();
+  $("#decide_minute").hide();
   $("#costDisplay").hide();
  </script>
 
@@ -197,7 +242,6 @@ final submit
   function getTeachertStartDate(val){
     chosenStartDate=val;
     //무엇을 해야하는가? 학생 등급이 new이면 라디오버튼에 2개를, old이면 하나를
-
     //var lessonCost;
     $.ajax({
        url:'getStudentGrade.php',
@@ -211,8 +255,6 @@ final submit
        }
      });
 
-     //alert('start date is '+chosenStartDate);
-     //alert('end date is '+teacherEndDate);
      var arr=[];
      $.ajax({
         url:'fillEndDate.php',
@@ -221,41 +263,26 @@ final submit
         data: {chosenStartDate:chosenStartDate,teacherEndDate:teacherEndDate},
         async: false,
         success:function(data){
-          arr.push(data.month1);
-          arr.push(data.month2);
-          arr.push(data.month3);
-          arr.push(data.month4);
-          arr.push(data.month5);
-          arr.push(data.month6);
-          arr.push(data.month7);
-          arr.push(data.month8);
-          arr.push(data.month9);
-          arr.push(data.month10);
-          arr.push(data.month11);
-          arr.push(data.month12);
+          var i;
+          for(i=0 ; i< 12; i++){
+            arr.push(data[0][i]);
+          }
         }
       });
-      //alert('this is ');
-      var month1=arr[0];
-      var month2=arr[1];
-      var month3=arr[2];
-      var month4=arr[3];
-      var month5=arr[4];
-      var month6=arr[5];
-      var month7=arr[6];
-      var month8=arr[7];
-      var month9=arr[8];
-      var month10=arr[9];
-      var month11=arr[10];
-      var month12=arr[11];
+      var monthArr=[];
+      var j;
+      for(j=0; j<12; j++){
+        if(arr[j] == null){
+          break;
+        }
+        monthArr[j]=arr[j];
+      }
 
       $.ajax({
          url:'endDropDownDB.php',
          type:'post',
-         data: {month1:month1,month2:month2,month3:month3,month4:month4,month5:month5,month6:month6,month7:month7,month8:month8,month9:month9,month10:month10,month11:month11,month12:month12},
-         //async: false
+         data: {monthArr:monthArr},
          success:function(data){
-           //alert('lesson ID is '+data.lessonType);
            $("#teacherEndDate").html(data);
          }
        });
@@ -263,48 +290,66 @@ final submit
 
   function getTeachertEndDate(val){
     chosenEndDate=val;
-    if(grade=='new'){
-      lessonDuration=30;
-      $("#costDisplay").show();
-      $('#showCost').html(lessonCost);
-    }else{
-      $("#resultDisplay2").show();
-    }
+
+    $.ajax({
+       url:'fillEndDate.php',
+       type:'post',
+       dataType:'json',
+       data: {chosenStartDate:chosenStartDate,teacherEndDate:teacherEndDate,chosenEndDate:chosenEndDate},
+       async: false,
+       success:function(data){
+          real_month_diff=data[1][0];
+       }
+     });
+     $('#decide_minute').show();
   }
 
-  function getDurationFromOld(val){
-    //alert('your choice is '+val);
-    lessonDuration=val;
+  function chooseWeekNumb(val){
+    numberPerWeek=val;
+    //alert('this is '+ numberPerWeek);
+     totalLessonCost=lessonCost*real_month_diff*lessonDuration*numberPerWeek;
     $("#costDisplay").show();
-    $('#showCost').html(lessonCost);
+    $('#showCost').html(totalLessonCost);
+  }
+
+  function getDuration(val){
+    lessonDuration=val;
+
+    if(grade == 'new'){
+      //alert('this is '+real_month_diff);
+     numberPerWeek=1;
+     totalLessonCost=lessonCost*real_month_diff*lessonDuration*numberPerWeek;
+     $("#costDisplay").show();
+     $('#showCost').html(totalLessonCost);
+    }else{
+      $("#resultDisplay_numb_week").show();
+    }
+    // $("#costDisplay").show();
+    // $('#showCost').html(lessonCost);
   }
 
   function finalClick(val){
     //alert("this value is "+val);
-
     permission='no';
-    //alert('this is '+permission);
-
+    //alert('this is '+lessonID);
     if (confirm('Are you sure you want to submit this?')){
       $.ajax({
-         url:'finalSubmit.php',
+         url:'finalSubmit_contract.php',
          type:'post',
-         data: {userName:userName,teacherID:teacherID,chosenStartDate:chosenStartDate,chosenEndDate:chosenEndDate,lessonID:lessonID,permission:permission},
+         data: {userName:userName,teacherID:teacherID,chosenStartDate:chosenStartDate,chosenEndDate:chosenEndDate,lessonID:lessonID,permission:permission,lessonDuration:lessonDuration,numberPerWeek:numberPerWeek},
          async: false
        });
        alert('Your submit will be confirmed by owner within 1-3 days.');
-       if (confirm('Do you want to register for additional lessons?')){
+       if (confirm('Do you want to register for additional lessons?\n If you click No, you would move into a new page to decide specific days and time.')){
          window.location="/music_school/pages/contract.php";
        }else{
-         window.location="/music_school/pages/studentPage.php";
+         window.location='/music_school/pages/studentPage.php';
        }
-    }else {
-      window.location="/music_school/pages/studentPage.php";
+    }else{
+      window.location="/music_school/pages/contract.php";
     }
   }
-    //lessonCost;
 </script>
-
 </div><!--adminPage-->
 </body>
 </html>

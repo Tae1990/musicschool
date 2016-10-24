@@ -6,7 +6,7 @@ $json = array(
    'lessonType'  => 0,
    'teacherFirstName'=>0,
    'teacherLastName'=>0,
-   'lessonDuration'=>0,
+   //'lessonDuration'=>0,
    'lessonCost'  => 0,
    'teacherStartDate'=>0,
    'teacherEndDate'=>0
@@ -25,7 +25,7 @@ if(isset($_POST['lessonID'],$_POST['userName'])){
   $row=$result->fetch();
   $json['lessonType']=$row['lessonType'];
   $teacherID=$row['teacherID'];
-  $json['lessonDuration']=$row['lessonDuration'];
+  //$json['lessonDuration']=$row['lessonDuration'];
   $json['lessonCost']=$row['lessonCost'];
   $json['teacherStartDate']=$row['teacherStartDate'];
   $json['teacherEndDate']=$row['teacherEndDate'];

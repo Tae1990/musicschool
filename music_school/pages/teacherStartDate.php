@@ -1,19 +1,5 @@
 <?php
-//header('Content-type: text/javascript');
-$json = array(
-    'month1'  => 0,
-   'month2'  => 0,
-   'month3'  => 0,
-   'month4'  => 0,
-   'month5'  => 0,
-   'month6'  => 0,
-   'month7'  => 0,
-   'month8'  => 0,
-   'month9'  => 0,
-   'month10'  => 0,
-   'month11'  => 0,
-   'month12'  => 0
-);
+$json=array( );
 ?>
 
 <?php
@@ -123,42 +109,12 @@ if(isset($_POST["teacherStartDate"],$_POST["teacherEndDate"])){
     $eachDate[$month_diff-1]=$teacherStartYear.'-'.$months[$month_diff-1].'-'.$teacherStartDay;
   }
 
-if(!empty($eachDate[0])){
-  $json['month1']=$eachDate[0];
-}
-if(!empty($eachDate[1])){
-  $json['month2']=$eachDate[1];
-}
-if(!empty($eachDate[2])){
-  $json['month3']=$eachDate[2];
-}
-if(!empty($eachDate[3])){
-  $json['month4']=$eachDate[3];
-}
-if(!empty($eachDate[4])){
-  $json['month5']=$eachDate[4];
-}
-if(!empty($eachDate[5])){
-  $json['month6']=$eachDate[5];
-}
-if(!empty($eachDate[6])){
-  $json['month7']=$eachDate[6];
-}
-if(!empty($eachDate[7])){
-  $json['month8']=$eachDate[7];
-}
-if(!empty($eachDate[8])){
-  $json['month9']=$eachDate[8];
-}
-if(!empty($eachDate[9])){
-  $json['month10']=$eachDate[9];
-}
-if(!empty($eachDate[10])){
-  $json['month11']=$eachDate[10];
-}
-if(!empty($eachDate[11])){
-  $json['month12']=$eachDate[11];
-}
+  $num=count($eachDate);
+  for($i=0; $i < $num ; $i++){
+    if(!empty($eachDate[$i])){
+      $json[$i]=$eachDate[$i];
+    }
+  }
 }?>
 
 <?php

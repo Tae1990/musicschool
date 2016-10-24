@@ -19,5 +19,6 @@
           <div><a href="teacherInstrument.php">Instruments</a></div>
 		  <div><a href="teacherInstrumentHire.php">Hired Instruments</a></div>
           <div><a href="contractteacherINFO.php">Contract INFO</a></div>
+		  <div><a href="teacherSchedule.php">Schedule</a></div>
       </div> 
 </header>

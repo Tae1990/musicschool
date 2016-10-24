@@ -4,20 +4,17 @@
     $userName = $_SESSION['userName'];
 	$row1=$conn->query("SELECT loginID FROM logins WHERE userName ='$userName'")->fetch();
 	$loginID = $row1['loginID'];
-    $nRows1 = $conn->query("select count(hiredInstruments.hiredInstrumentID) AS NumberOfContract from hiredInstruments
-	       				   INNER JOIN logins ON hiredInstruments.loginID = '$loginID'")->fetchColumn();
+    $nRows1 = $conn->query("select count(hiredinstruments.hiredInstrumentID) AS NumberOfContract from hiredInstruments
+	       				   INNER JOIN logins ON hiredinstruments.loginID = '$loginID'")->fetchColumn();
     if ($nRows1 < 1){
 		   echo "You have not borrow any instruments";
 	}
 	if ($nRows1 > 0){ 
 		try{
-			$userName = $_SESSION['userName'];
-			$row2=$conn->query("SELECT loginID FROM logins WHERE userName ='$userName'")->fetch();
-			$loginID = $row2['loginID'];
 			//prepare query
 			$stmt = $conn->prepare("SELECT instruments.image, instruments.hireCost, instruments.instrumentName, instruments.condition 
-									FROM instruments , hiredInstruments where hiredInstruments.loginID = '$loginID'  and 
-									instruments.instrumentID = hiredInstruments.instrumentID");
+									FROM instruments , hiredinstruments where hiredinstruments.loginID = '$loginID'  and 
+									instruments.instrumentID = hiredinstruments.instrumentID");
 			//execute
 			$stmt->execute();
 			//retrive all rows

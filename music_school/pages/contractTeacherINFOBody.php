@@ -12,37 +12,52 @@
     {
 	   echo "You don't have any contracts with students";
     }
-    if ($nRows > 0){ 
-		try{
-			//prepare query
-			$stmt = $conn->prepare("SELECT lessons.lessonType, lessons.lessonDuration, lessons.lessonPlace, 
-								   contracts.studentStartDate, contracts.studentEndDate, students.firstName from contracts, lessons, teachers, students, 
-								   logins where contracts.lessonID = lessons.lessonID and lessons.teacherID = teachers.teacherID and 
-								   contracts.studentID = students.studentID and students.loginID = logins.loginID and '$loginID' = teachers.loginID");
-				//execute
-				$stmt->execute();
-				// retrieve all rows
-				echo ("<table padding:8px width=80% border=0 align='center'>");
-				echo ("<tr><th> Lesson Type</th><th>Lesson Duration</th>
-					   <th>Lesson Place</th><th>Start Date</th><th>End Date</th><th>Student Name</th></tr>");
+    if ($nRows > 0){
+		$row2=$conn->query("SELECT studentContractPermission FROM contracts")->fetch();
+		$permission = $row2["studentContractPermission"];
+        if ($permission == "yes"){	
+			try{
+				//prepare query
+				$stmt = $conn->prepare("SELECT lessons.lessonType, lessons.lessonPlace, 
+									   contracts.studentStartDate, contracts.studentEndDate, contracts.lessonDuration, contracts.numberPerWeek, 
+									   students.firstName from contracts, lessons, teachers, students, 
+									   logins where contracts.lessonID = lessons.lessonID and lessons.teacherID = teachers.teacherID and 
+									   contracts.studentID = students.studentID and students.loginID = logins.loginID and '$loginID' = teachers.loginID");
+					//execute
+					$stmt->execute();
+					// retrieve all rows
+					echo ("<table padding:8px width=80% border=0 align='center'>");
+					echo ("<tr><th> Lesson Type</th><th>Lesson Duration</th><th>Lessons per week</th>
+						   <th>Lesson Place</th><th>Start Date</th><th>End Date</th><th>Student Name</th></tr>");
 
-				while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-				{
-					$lessonType = $row["lessonType"];
-					$lessonDuration = $row["lessonDuration"];
-					$lessonPlace = $row["lessonPlace"];
-					$startDate = $row["studentStartDate"];
-					$endDate = $row["studentEndDate"];
-					$firstName = $row["firstName"];
-					
-					echo("<tr><td>$lessonType</td><td>$lessonDuration</td>");
-					echo("<td>$lessonPlace</td><td>$startDate</td><td>$endDate</td><td>$firstName</td></tr>");
-				}
-				echo ("</table>");		
-		}
+					while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+					{
+						$lessonType = $row["lessonType"];
+						$lessonDuration = $row["lessonDuration"];
+						if($lessonDuration == 1){
+							$lessonDuration = 30;
+						}else{
+							$lessonDuration = 60;
+						}
+						$lessonPlace = $row["lessonPlace"];
+						$startDate = $row["studentStartDate"];
+						$endDate = $row["studentEndDate"];
+						$firstName = $row["firstName"];
+						$numberPerWeek =$row["numberPerWeek"];
+						
+						echo("<tr><td>$lessonType</td><td>$lessonDuration munites</td><td>$numberPerWeek</td>");
+						echo("<td>$lessonPlace</td><td>$startDate</td><td>$endDate</td><td>$firstName</td></tr>");
+					}
+					echo ("</table>");		
+			}
 catch(PDOException $e) 
 {
 	echo $e->getMessage();
 	}}
+		else{
+			echo "The contrac has not permitted yet.\n<br />\n<br />";
+			echo "The proccess will be completed in 24 hours.";
+        }
+	}
 ?>
 </div><!--adminPage-->

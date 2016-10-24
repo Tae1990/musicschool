@@ -24,8 +24,8 @@
 		        <td class='textRight'>$sFirstName</td><td align='center'>");
 		  echo("<form name=studentContractPermission method=post action=\"../modules/studentContractPermission.php\">
 		        <input type=hidden name= 'autoID' value=".$row['studentContractID']." />");
-			if ($row['studentContractPermission']=='off'){echo "<input type=checkbox onclick='this.form.submit();' name='studentContractPermission' value='on' />";}
-			else if ($row['studentContractPermission']=='on'){echo "<input type=checkbox checked onclick='this.form.submit();' name='studentContractPermission' value='on' />";}
+			if ($row['studentContractPermission']=='no'){echo "<input type=checkbox onclick='this.form.submit();' name='studentContractPermission' value='yes' />";}
+			else if ($row['studentContractPermission']=='yes'){echo "<input type=checkbox checked onclick='this.form.submit();' name='studentContractPermission' value='yes' />";}
 			echo("<input type='hidden' name='action' value='check'></form></p></td></tr>");		
 	    }
 	echo("</table>");
