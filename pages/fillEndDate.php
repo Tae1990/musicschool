@@ -1,20 +1,7 @@
 <?php
-//header('Content-type: text/javascript');
-$json = array(
-    'month1'  => 0,
-   'month2'  => 0,
-   'month3'  => 0,
-   'month4'  => 0,
-   'month5'  => 0,
-   'month6'  => 0,
-   'month7'  => 0,
-   'month8'  => 0,
-   'month9'  => 0,
-   'month10'  => 0,
-   'month11'  => 0,
-   'month12'  => 0
-);
+$json = array( array(), array() );
 ?>
+
 
 <?php
 function dateSorting($date1,$choice){
@@ -85,7 +72,14 @@ function settingEndDay($month){
 if(isset($_POST["chosenStartDate"],$_POST["teacherEndDate"])){
 
   $teacherStartDate = $_POST["chosenStartDate"];
-  $teacherEndDate = $_POST["teacherEndDate"];
+
+
+  if(isset($_POST["chosenEndDate"])){
+    $teacherEndDate = $_POST["chosenEndDate"];
+  }else{
+    $teacherEndDate = $_POST["teacherEndDate"];
+  }
+
 
   $teacherStartYear=dateSorting($teacherStartDate,1);
   $teacherStartMonth=dateSorting($teacherStartDate,2);
@@ -100,9 +94,11 @@ if(isset($_POST["chosenStartDate"],$_POST["teacherEndDate"])){
   $month_diff;
   $first_diff;
   $eachDate=array();
+  $real_month_diff;
 
   if($teacherStartYear==$teacherEndYear){
     $month_diff=$teacherEndMonth-$teacherStartMonth+1;
+    $real_month_diff=$month_diff;
     $startingPoint=$teacherStartMonth;
 
     for($i=0;$i<$month_diff;$i++){
@@ -116,6 +112,7 @@ if(isset($_POST["chosenStartDate"],$_POST["teacherEndDate"])){
   }else{
     $first_diff=12-$teacherStartMonth+1;
     $month_diff=$first_diff+$teacherEndMonth;
+    $real_month_diff=$month_diff;
     $startingPoint=$teacherStartMonth;
     $mod=1;
     for($i=0;$i<$month_diff;$i++){
@@ -160,42 +157,13 @@ if(isset($_POST["chosenStartDate"],$_POST["teacherEndDate"])){
     $eachDate[$month_diff-1]=$teacherStartYear.'-'.settingEndDay($months[$month_diff-1]);
   }
 
-if(!empty($eachDate[0])){
-  $json['month1']=$eachDate[0];
-}
-if(!empty($eachDate[1])){
-  $json['month2']=$eachDate[1];
-}
-if(!empty($eachDate[2])){
-  $json['month3']=$eachDate[2];
-}
-if(!empty($eachDate[3])){
-  $json['month4']=$eachDate[3];
-}
-if(!empty($eachDate[4])){
-  $json['month5']=$eachDate[4];
-}
-if(!empty($eachDate[5])){
-  $json['month6']=$eachDate[5];
-}
-if(!empty($eachDate[6])){
-  $json['month7']=$eachDate[6];
-}
-if(!empty($eachDate[7])){
-  $json['month8']=$eachDate[7];
-}
-if(!empty($eachDate[8])){
-  $json['month9']=$eachDate[8];
-}
-if(!empty($eachDate[9])){
-  $json['month10']=$eachDate[9];
-}
-if(!empty($eachDate[10])){
-  $json['month11']=$eachDate[10];
-}
-if(!empty($eachDate[11])){
-  $json['month12']=$eachDate[11];
-}
+  $json[1][0]=$real_month_diff;
+
+  for($i=0; $i<12; $i++){
+    if(!empty($eachDate[$i])){
+      $json[0][$i]=$eachDate[$i];
+    }
+  }
 }?>
 
 <?php

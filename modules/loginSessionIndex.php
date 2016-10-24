@@ -1,9 +1,24 @@
+<?php
+include "../pages/headerIndex.php";
+?>
+<link rel="stylesheet" href="../css/style.css">
+<br>
+<br>
+<br>
+<h2>Login</h2>
+
+
+  <div class="imgcontainer">
+    <img src="../images/login.jpg" alt="Avatar" class="avatar">
+  </div>
+
+
 <?php 
  if (!isset($_SESSION['login']) and !isset($_SESSION['error']))
  {       
 	echo(
           "<div class=\"login\">
-           <form action=\"modules/login.php\" method=\"post\">
+           <form action=\"login.php\" method=\"post\">
            <div class=\"form-group\">
            <label for=\"userName\">User name</label>
            <input type=\"text\" id=\"userName\" name=\"userName\" placeholder=\"Enter userName\" required>
@@ -14,12 +29,7 @@
            </div>
            <button type=\"submit\"> Login</button>
            </form>
-           <form action=\"pages/register_student.php\">
-           <input type=\"submit\" value=\"Register as student\">
-           </form>
-		   <form action=\"pages/register_teacher.php\">
-           <input type=\"submit\" value=\"Register as teacher\">
-           </form>
+           
 		   
 		  
 		  </div><!--login-->");
@@ -28,7 +38,7 @@
  {
 	
 	 echo("<div class=\"login\">
-           <form action=\"modules/login.php\" method=\"post\">
+           <form action=\"login.php\" method=\"post\">
            <div class=\"form-group\">
            <label for=\"userName\">User name</label>
            <input type=\"text\" id=\"userName\" name=\"userName\" placeholder=\"Enter userName\" required>
@@ -39,12 +49,7 @@
             </div>
               <button type=\"submit\"> Login</button>
               </form>
-              <form action=\"pages/register_student.php\">
-           <input type=\"submit\" value=\"Register as student\">
-           </form>
-		   <form action=\"pages/register_teacher.php\">
-           <input type=\"submit\" value=\"Register as teacher\">
-           </form>
+             
 			  ".$_SESSION['error']."
 			</div><!--login-->");	
 	unset($_SESSION['error']);		  
@@ -52,7 +57,7 @@
 else
 {
 	echo ("<div class=\"login\">
-		         <form action=\"modules/logout.php\" method=\"post\">". $_SESSION['userName'] . "
+		         <form action=\"../modules/logout.php\" method=\"post\">". $_SESSION['userName'] . "
 				 <br>
 				 <button type=\"submit\"> Log out</button>
 				 </form>

@@ -1,64 +1,3 @@
-<?php 
- if (!isset($_SESSION['login']) and !isset($_SESSION['error']))
- {       
-	echo(
-          "<div class=\"login\">
-           <form action=\"../modules/login.php\" method=\"post\">
-           <div class=\"form-group\">
-           <label for=\"userName\">User name</label>
-           <input type=\"text\" id=\"userName\" name=\"userName\" placeholder=\"Enter userName\" required>
-           </div>
-           <div class=\"form-group\">
-           <label for=\"password\">Password</label>
-           <input type=\"password\" id=\"password\" name=\"password\" placeholder=\"Enter password\">
-           </div>
-           <button type=\"submit\"> Login</button>
-           </form>
-           <form action=\"register_student.php\">
-           <input type=\"submit\" value=\"Register as student\">
-           </form>
-		   <form action=\"register_teacher.php\">
-           <input type=\"submit\" value=\"Register as teacher\">
-           </form>
-		   
-		  
-		  </div><!--login-->");
- }
- elseif ( isset($_SESSION['error']) )
- {
-	
-	 echo("<div class=\"login\">
-           <form action=\"../modules/login.php\" method=\"post\">
-           <div class=\"form-group\">
-           <label for=\"userName\">User name</label>
-           <input type=\"text\" id=\"userName\" name=\"userName\" placeholder=\"Enter userName\" required>
-            </div>
-            <div class=\"form-group\">
-              <label for=\"password\">Password</label>
-              <input type=\"password\" id=\"password\" name=\"password\" placeholder=\"Enter password\">
-            </div>
-              <button type=\"submit\"> Login</button>
-              </form>
-              <form action=\"register_student.php\">
-           <input type=\"submit\" value=\"Register as student\">
-           </form>
-		   <form action=\"register_teacher.php\">
-           <input type=\"submit\" value=\"Register as teacher\">
-           </form>
-			  ".$_SESSION['error']."
-			</div><!--login-->");	
-	unset($_SESSION['error']);		  
- }
-else
-{
-	echo ("<div class=\"login\">
-		         <form action=\"../modules/logout.php\" method=\"post\">". $_SESSION['userName'] . "
-				 <br>
-				 <button type=\"submit\"> Log out</button>
-				 </form>
-		         </div><!--login-->"); 
-           }
-		  ?>
 <div class="adminPage">
 <?php	
 
@@ -81,7 +20,10 @@ else
 		        <input type=hidden name= 'autoID' value=".$row['loginID']." />");
 			if ($row['permission']=='off'){echo "<input type=checkbox onclick='this.form.submit();' name='permission' value='on' />";}
 			else if ($row['permission']=='on'){echo "<input type=checkbox checked onclick='this.form.submit();' name='permission' value='on' />";}
-			echo("<input type='hidden' name='action' value='check'></form></p></td></tr>");		
+			echo("<input type='hidden' name='action' value='check'></form></p></td>");	
+			
+			if($row['role']=='teacher'){echo("<td><a href='teachers-edit.php?loginID=" . $row['loginID'] . "'>Edit</a></td></tr>");}
+			else if($row['role']=='student'){echo("<td><a href='students-edit.php?loginID=" . $row['loginID'] . "'>Edit</a></td></tr>");}	
 	  }
 	echo("</table>");
     }

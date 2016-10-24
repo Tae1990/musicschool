@@ -21,5 +21,6 @@
 		  <div><a href="contract.php">Contract</a></div>
           <div><a href="contractStudentINFO.php">Contract INFO</a></div>
 		  <div><a href="enrollment.php">Enrollment</a></div>
+		  <div><a href="studentSchedule.php">Schedule</a></div>
       </div> 
 </header>
