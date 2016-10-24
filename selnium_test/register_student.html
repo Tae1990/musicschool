@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://www.ifb29963musicschool.com/" />
+<title>register_student</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">register_student</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/index.php</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=MORE</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=userName</td>
+	<td>123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=password</td>
+	<td>123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=firstName</td>
+	<td>123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=lastName</td>
+	<td>123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=gender</td>
+	<td>male</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=dateOfBirth</td>
+	<td>123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=phoneNumber</td>
+	<td>123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=mobileNumber</td>
+	<td>123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=address</td>
+	<td>123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=email</td>
+	<td>123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=faceBook</td>
+	<td>123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=parentFirstName</td>
+	<td>123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=parentLastName</td>
+	<td>123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=parentPhoneNumber</td>
+	<td>123</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>shows error message of the format type of user name only character is available</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=userName</td>
+	<td>tae</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>password should be more than six letter</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=password</td>
+	<td>123!@#</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Name should be only character types</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=firstName</td>
+	<td>TAELIM</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=lastName</td>
+	<td>SON</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>phone number should be more than 10 numbers</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=phoneNumber</td>
+	<td>abcdefghid</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>only number is available</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=phoneNumber</td>
+	<td>0481242893</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=mobileNumber</td>
+	<td>0781242893</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>please type valid email address. ex) @</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=faceBook</td>
+	<td>canonipop@hotmail.com</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>show error message for name as well. not numbers</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=parentFirstName</td>
+	<td>john</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=parentLastName</td>
+	<td>lee</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=parentPhoneNumber</td>
+	<td>0411111111</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.registerPage</td>
+	<td>Personal detail: user name : <br /> password : <br /> first name : <br /> last name : <br /> gender : <br /> dateOfBirth : <br /> phone number : <br /> mobile number : <br /> address : <br /> email : <br /> facebook : <br /> Parent's detail: first name : <br /> last name : <br /> phone number : <br /> Register New records created successfully</td>
+</tr>
+<tr>
+	<td>result : birthday format is working on Chrom, but in Firefox is not working, It needs specific function to do date format</td>
+	<td></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
