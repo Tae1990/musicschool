@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://www.ifb29963musicschool.com/" />
+<title>Contract_Enrollment_Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Contract_Enrollment_Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/index.php</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=MORE</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=userName</td>
+	<td>student1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>123456</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button[type=&quot;submit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Contract</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=teachers</td>
+	<td>label=Janet</td>
+</tr>
+<!--Chooese Teachers (from Database) after that it shows music lessons-->
+<tr>
+	<td>select</td>
+	<td>id=classList2</td>
+	<td>label=Intermadiate Guitar</td>
+</tr>
+<!--It shows username, class and teacher name that I have selected-->
+<tr>
+	<td>select</td>
+	<td>id=teacherStartDate</td>
+	<td>label=2016-10-01</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=teacherEndDate</td>
+	<td>label=2016-12-31</td>
+</tr>
+<!--Choose start date and end date from the drop list.-->
+<tr>
+	<td>click</td>
+	<td>xpath=(//input[@id='duration'])[2]</td>
+	<td></td>
+</tr>
+<!--Choose duration then, it automatically calculates the price of the lesson-->
+<!--if old tudent is on contract, old student can choose three times maximum in a week-->
+<tr>
+	<td>click</td>
+	<td>id=finalButton</td>
+	<td></td>
+</tr>
+<!--Final Submit, and check-->
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure you want to submit this?</td>
+	<td></td>
+</tr>
+<!--Show message Your submit will be confirmed by owner within 1-3 days.-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Enrollment</td>
+	<td></td>
+</tr>
+<!--(After that, Owner should permitt the lesson request from owner page)-->
+<!--(If the lessons are duplicated with same date, it is not uploaded into database)-->
+<tr>
+	<td>clickAndWait</td>
+	<td>name=4</td>
+	<td></td>
+</tr>
+<!--if already the lesson is taken by other student or if in the lessontimes in database is not updated) shows-->
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='leftTable']/tbody/tr[2]/td[4]/p</td>
+	<td>This time is not available now!</td>
+</tr>
+<!--Click Go back to the previous page and choose another lesson-->
+<tr>
+	<td>clickAndWait</td>
+	<td>name=3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=checkBox1</td>
+	<td>off</td>
+</tr>
+<!--if the lesson is available, tick box is working-->
+<tr>
+	<td>click</td>
+	<td>id=checkBox1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=checkBox2</td>
+	<td></td>
+</tr>
+<!--if new student clicked two tick box, error message "You cannot choose more!" because new student only can take one lesson in a week.-->
+<tr>
+	<td>click</td>
+	<td>id=checkBox2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>chooseCancelOnNextConfirmation</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=finalButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure you want to submit this?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Schedule</td>
+	<td></td>
+</tr>
+<!--you should be able to chekc in scehdule-->
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<!---->
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<!---->
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
